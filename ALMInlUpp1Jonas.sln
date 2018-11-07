@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALMInlUpp1Jonas", "ALMInlUpp1Jonas\ALMInlUpp1Jonas.csproj", "{52462DF0-86F6-4F19-9202-F3701D479E6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InlUpp1TestJonas", "InlUpp1TestJonas\InlUpp1TestJonas.csproj", "{F9259B09-1B31-4D53-849D-CD869011BA95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{52462DF0-86F6-4F19-9202-F3701D479E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52462DF0-86F6-4F19-9202-F3701D479E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52462DF0-86F6-4F19-9202-F3701D479E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9259B09-1B31-4D53-849D-CD869011BA95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9259B09-1B31-4D53-849D-CD869011BA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9259B09-1B31-4D53-849D-CD869011BA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9259B09-1B31-4D53-849D-CD869011BA95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
