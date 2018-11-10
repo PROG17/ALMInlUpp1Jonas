@@ -72,9 +72,9 @@ namespace InlUpp1UnitTestJonas
         }
 
         [Theory]
-        [InlineData(99, 100, "NOT ALLOWED")]
-        [InlineData(1, 2000, "NOT ALLOWED")]
-        [InlineData(10000, 100001, "NOT ALLOWED")]
+        [InlineData(99, 100, "Beloppet högre än saldot på kontot")]
+        [InlineData(1, 2000, "Beloppet högre än saldot på kontot")]
+        [InlineData(10000, 100001, "Beloppet högre än saldot på kontot")]
         public void WithdrawalShouldFail(decimal balance, decimal amount, string expectedResult)
         {
             // arrange

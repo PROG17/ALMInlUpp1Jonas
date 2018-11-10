@@ -1,0 +1,43 @@
+﻿@model ALMInlUpp1Jonas.ViewModels.CreateTransactionViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Jonas Bank</h2>
+<br />
+<h2>Insättning/Uttag</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label>Kontonummer:</label>
+                <input asp-for="AccountNr" class="form-control"/>
+                <span asp-validation-for="AccountNr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Belopp (Kr):</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+            <input min="1" type="submit" class="btn btn-success" style="margin-top:5px;" name="Deposit" value="Insättning" formaction="Deposit" />
+            <input min="0" type="submit" class="btn btn-success" style="margin-top:5px;" name="Withdrawal" value="Uttag" formaction="Withdrawal" />            
+        </form>
+    </div>
+</div>
+
+@{ if (Model.TransactionResult != null)
+    {
+        <div>
+            <h2>@Model.TransactionResult</h2>
+        </div>
+    }
+}
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

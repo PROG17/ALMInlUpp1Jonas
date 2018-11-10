@@ -26,7 +26,7 @@ namespace ALMInlUpp1Jonas.Repositories
 
             if (account == null)
             {
-                return "NOT EXISTING";
+                return "Kontonumret finns inte";
             }
 
             account.Deposit(amount);
@@ -41,17 +41,30 @@ namespace ALMInlUpp1Jonas.Repositories
 
             if (account == null)
             {
-                return "NOT EXISTING";
+                return "Kontonumret finns inte";               
             }
 
-            // Det ska inte gå att ta ut mer pengar från kontot än vad kreditgränsen tillåter
+            // Det ska inte gå att ta ut mer pengar från kontot än vad som finns
             if (amount > account.Balance)
             {
-                return "NOT ALLOWED";
+                return "Beloppet högre än saldot på kontot";
             }
 
             account.Withdrawal(amount);
             return "OK";
+        }
+
+        public decimal GetBalance(int accNr)
+        {
+            Account account = Accounts.Where(x => x.AccountNr == accNr).FirstOrDefault();
+            if (account == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return account.Balance;
+            }
         }
 
         private void CreateBankData()
