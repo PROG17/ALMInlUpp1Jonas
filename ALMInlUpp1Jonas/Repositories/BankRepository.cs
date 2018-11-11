@@ -19,7 +19,55 @@ namespace ALMInlUpp1Jonas.Repositories
             CreateBankData();
         }
 
-       private void CreateBankData()
+        // Den här metoden sätter in pengar på ett konto 
+        public string Deposit(int accNr, decimal amount)
+        {                      
+            Account account = Accounts.Where(x => x.AccountNr == accNr).FirstOrDefault();
+
+            if (account == null)
+            {
+                return "Kontonumret finns inte";
+            }
+
+            account.Deposit(amount);
+            return "OK";
+        }
+
+        
+        // Den här metoden tar ut pengar från ett konto
+        public string Withdrawal(int accNr, decimal amount)
+        {
+            Account account = Accounts.Where(x => x.AccountNr == accNr).FirstOrDefault();
+
+            if (account == null)
+            {
+                return "Kontonumret finns inte";               
+            }
+
+            // Det ska inte gå att ta ut mer pengar från kontot än vad som finns
+            if (amount > account.Balance)
+            {
+                return "Beloppet högre än saldot på kontot";
+            }
+
+            account.Withdrawal(amount);
+            return "OK";
+        }
+
+        public decimal GetBalance(int accNr)
+        {
+            Account account = Accounts.Where(x => x.AccountNr == accNr).FirstOrDefault();
+            if (account == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return account.Balance;
+            }
+        }
+
+        private void CreateBankData()
        {           
 
            Customer cust1 = new Customer();

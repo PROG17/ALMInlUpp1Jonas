@@ -7,7 +7,7 @@ namespace ALMInlUpp1Jonas.Models
 {
     public class Customer
     {
-        public int CustomerNr { get; internal set; }
-        public string Name { get; internal set; }
+        public int CustomerNr { get; set; }
+        public string Name { get; set; }
     }
 }
