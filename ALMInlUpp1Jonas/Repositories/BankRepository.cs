@@ -56,6 +56,7 @@ namespace ALMInlUpp1Jonas.Repositories
 
         public bool Transfer(int fromaccount, int toaccount, decimal sum)
         {
+
             if (fromaccount != toaccount)
             {
                 Account fromAccount = Accounts.Where(a => a.AccountNr == fromaccount).FirstOrDefault();
