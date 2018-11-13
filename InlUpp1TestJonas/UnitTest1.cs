@@ -96,5 +96,59 @@ namespace InlUpp1UnitTestJonas
             // assert            
             Assert.Equal(expectedResult, actualResult);           
         }
+
+        [Theory]
+        [InlineData(2004, 2004, 1, false)] //same account == false
+        [InlineData(2004, 2001, 1, true)] //other account == true
+        public void Transfer(int fromaccount, int toaccount, int sum, bool expectedResult)
+        {
+
+            // act
+            var result = _bank.Transfer(fromaccount, toaccount, sum);
+
+            // assert            
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(100, 50, true)] // balance higher than sum == true
+        [InlineData(50, 100, false)] // balance lower than sum == false
+        public void Transfer_Not_too_much(int fromBalance, decimal sum, bool expected)
+        {
+            //arrange
+            Customer c1 = new Customer() {
+                Name = "Person",
+                CustomerNr = 1
+            };           
+            Customer c2 = new Customer()
+            {
+                Name = "Person2",
+                CustomerNr = 2
+            };
+
+            _bank.Customers.Add(c1);
+            _bank.Customers.Add(c2);
+
+            Account fromAccount = new Account() {
+                AccountNr = 1,
+                Owner = c1,
+                Balance = fromBalance
+            };
+
+            Account toAccount = new Account()
+            {
+                AccountNr = 2,
+                Owner = c2,
+                Balance = 0
+            };
+            _bank.Accounts.Add(fromAccount);
+            _bank.Accounts.Add(toAccount);
+
+            // act
+            var result = _bank.Transfer(1, 2, sum);
+
+            // assert            
+            Assert.Equal(expected, result);
+        }
     }
 }
