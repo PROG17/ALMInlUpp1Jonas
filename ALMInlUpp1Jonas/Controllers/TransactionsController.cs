@@ -17,6 +17,24 @@ namespace ALMInlUpp1Jonas.Controllers
             _bank = bank;
         }
 
+        public IActionResult Transfer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Transfer(int fromAccount, int toAccount, decimal sum)
+        {
+            var result = _bank.Transfer(fromAccount,toAccount,sum);
+
+            if (result)
+                ViewBag.Message = "Överföringen lyckades";
+            else
+                ViewBag.Message = "Överföringen misslyckades";
+
+                return View();            
+        }
+
         [HttpGet]
         public IActionResult DepositOrWithdrawal()
         {
