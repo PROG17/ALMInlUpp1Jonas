@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+<h2>Transfer</h2>
+
+@if(ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+
+<form asp-controller="Transactions" asp-action="Transfer" asp-route-toAccount="" asp-route-fromAccount="" asp-route-sum="" method="post">
+    <label>Från konto: </label>
+    <input type="text" class="form-control" name="fromAccount" placeholder="Från..." />
+    <label>Till konto:</label>
+    <input type="text" class="form-control" name="toAccount" placeholder="Till..." />
+    <label>Summa:</label>
+    <input type="text" class="form-control" name="sum" placeholder="Summa..." />
+    <input type="submit" class="btn btn-success" style="margin-top:5px" formaction="Transfer" value="Överför" />
+</form>
+
