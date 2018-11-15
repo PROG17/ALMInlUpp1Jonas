@@ -17,6 +17,42 @@ namespace ALMInlUpp1Jonas.Controllers
             _bank = bank;
         }
 
+        public IActionResult Transfer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Transfer(int fromAccount, int toAccount, decimal sum)
+        {
+            if (!(_bank.Accounts.Any(c => c.AccountNr == fromAccount) && _bank.Accounts.Any(c => c.AccountNr == toAccount)))
+            {
+                ViewBag.Message = "Skriv ett riktigt kontonummer";
+                return View();
+            }
+
+            var fromaccount = _bank.Accounts.Where(a => a.AccountNr == fromAccount).FirstOrDefault();
+            if (!(fromaccount.Balance >= sum))
+            {
+                ViewBag.Message = "För lågt saldo på kontot";
+                return View();
+            }
+
+            if(!(sum > 0))//summan är 0 om formatet är fel
+            {
+                ViewBag.Message = "Ange en summa ex 100,50";
+                return View();
+            }
+            var result = _bank.Transfer(fromAccount,toAccount,sum);
+
+            if (result)
+                ViewBag.Message = "Överföringen lyckades";
+            else
+                ViewBag.Message = "Överföringen misslyckades";
+
+                return View();            
+        }
+
         [HttpGet]
         public IActionResult DepositOrWithdrawal()
         {

@@ -54,6 +54,33 @@ namespace ALMInlUpp1Jonas.Repositories
             return "OK";
         }
 
+        public bool Transfer(int fromaccount, int toaccount, decimal sum)
+        {
+
+            if (fromaccount != toaccount)
+            {
+                Account fromAccount = Accounts.Where(a => a.AccountNr == fromaccount).FirstOrDefault();
+                Account toAccount = Accounts.Where(a => a.AccountNr == toaccount).FirstOrDefault();
+
+                if (fromAccount.Balance >= sum)
+                {
+                    fromAccount.Withdrawal(sum);
+                    toAccount.Deposit(sum);
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
         public decimal GetBalance(int accNr)
         {
             Account account = Accounts.Where(x => x.AccountNr == accNr).FirstOrDefault();
